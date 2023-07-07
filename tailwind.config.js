@@ -6,6 +6,10 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      'oxford-blue': '#032541',
+      white: '#ffffff',
+    },
     extend: {
       fontFamily: {
         source: ['Source Sans Pro', 'Arial', 'sans-serif'],
