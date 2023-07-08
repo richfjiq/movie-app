@@ -12,6 +12,10 @@ module.exports = {
       'ghost-white': '#FAF9F8',
       platinum: '#E3E3E3',
       black: '#000000',
+      'dark-jungle-green': '#081C22',
+      'ufo-green': '#1ED07A',
+      'dogwood-rose': '#DA2360',
+      pear: '#D3D530',
     },
     extend: {
       fontFamily: {
