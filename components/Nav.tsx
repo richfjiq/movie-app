@@ -19,7 +19,7 @@ const Nav: FC = () => {
   console.log({ nav });
 
   return (
-    <nav className="flex w-full bg-oxford-blue fixed h-[64px] justify-center">
+    <nav className="flex w-full bg-oxford-blue absolute h-[64px] justify-center">
       <div className="flex max-w-[1320px] w-full pl-5 pr-5 min-[600px]:pl-10 min-[600px]:pr-10 justify-between">
         <ul className="w-[33%] flex items-center min-[900px]:hidden">
           <li className="cursor-pointer" onClick={toggleNavbar}>
@@ -50,7 +50,7 @@ const Nav: FC = () => {
               <li className="text-white p-2 mr-[14px] cursor-pointer">
                 Movies
               </li>
-              <div className="absolute w-[170px] top-[45px] hidden group-hover:md:block hover:md:block bg-white pt-2 pb-2 rounded-sm shadow">
+              <div className="absolute w-[170px] top-[45px] hidden group-hover:md:block hover:md:block bg-white pt-2 pb-2 rounded-sm shadow-lg">
                 <ul>
                   <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
                     Popular

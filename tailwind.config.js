@@ -10,10 +10,15 @@ module.exports = {
       'oxford-blue': '#032541',
       white: '#ffffff',
       'ghost-white': '#FAF9F8',
+      platinum: '#E3E3E3',
+      black: '#000000',
     },
     extend: {
       fontFamily: {
         source: ['Source Sans Pro', 'Arial', 'sans-serif'],
+      },
+      boxShadow: {
+        lg: '0 2px 8px rgba(0,0,0,.1)',
       },
     },
   },

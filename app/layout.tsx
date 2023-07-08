@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 
-import Nav from '@/components/Nav';
+import { Nav } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Popular Movies — The Movie Database (TMDB)',
@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Nav />
-        <main>{children}</main>
+        <main className="flex w-full justify-center">{children}</main>
       </body>
     </html>
   );
