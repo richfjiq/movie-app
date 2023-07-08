@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       'oxford-blue': '#032541',
       white: '#ffffff',
+      'ghost-white': '#FAF9F8',
     },
     extend: {
       fontFamily: {
