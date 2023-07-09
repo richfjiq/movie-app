@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FC } from 'react';
 import Image from 'next/image';
 
@@ -6,18 +7,16 @@ import CircleProgress from './CircleProgress';
 
 const Card: FC = () => {
   return (
-    <div className="w-[180px] border border-platinum rounded-lg shadow-lg mb-[30px]">
-      <div>
-        <div className="relative">
-          <a>
-            <Image
+    <div className="w-full border border-platinum rounded-lg shadow-lg mb-[30px]">
+      <div className="w-full">
+        <div className="relative w-full">
+          <div className="flex w-full">
+            <img
               className="rounded-t-lg cursor-pointer"
               src="https://image.tmdb.org/t/p/w500/fiVW06jE7z9YnO4trhaMEdclSiC.jpg"
               alt="movie picture"
-              width={180}
-              height={235}
             />
-          </a>
+          </div>
           <Image
             className="absolute right-2 top-2 opacity-60 cursor-pointer"
             src={dotsIcon}

@@ -20,8 +20,8 @@ const Nav: FC = () => {
 
   return (
     <nav className="flex w-full bg-oxford-blue absolute h-[64px] justify-center">
-      <div className="flex max-w-[1320px] w-full pl-5 pr-5 min-[600px]:pl-10 min-[600px]:pr-10 justify-between">
-        <ul className="w-[33%] flex items-center min-[900px]:hidden">
+      <div className="flex max-w-[1400px] w-full pl-5 pr-5 min-[600px]:pl-10 min-[600px]:pr-10 justify-between">
+        <ul className="w-[33%] flex items-center min-[901px]:hidden">
           <li className="cursor-pointer" onClick={toggleNavbar}>
             <Image src={menuIcon} alt="Menu icon" width={25} height={25} />
           </li>
@@ -90,7 +90,7 @@ const Nav: FC = () => {
               />
             </li>
           </ul>
-          <ul className="flex items-center min-[900px]:hidden">
+          <ul className="flex items-center min-[901px]:hidden">
             <li className="text-white">
               <Image
                 className="text-color"
