@@ -5,7 +5,15 @@ import Image from 'next/image';
 import dotsIcon from '@/public/assets/dotsIcon.svg';
 import CircleProgress from './CircleProgress';
 
-const Card: FC = () => {
+interface Props {
+  url: string;
+  title: string;
+  date: string;
+  genres?: string;
+  vote: number;
+}
+
+const Card: FC<Props> = ({ url, title, date, genres, vote }) => {
   return (
     <div className="w-full border border-platinum rounded-lg shadow-lg mb-[30px]">
       <div className="w-full">
@@ -13,7 +21,7 @@ const Card: FC = () => {
           <div className="flex w-full">
             <img
               className="rounded-t-lg cursor-pointer"
-              src="https://image.tmdb.org/t/p/w500/fiVW06jE7z9YnO4trhaMEdclSiC.jpg"
+              src={`https://image.tmdb.org/t/p/w500/${url}`}
               alt="movie picture"
             />
           </div>
@@ -25,12 +33,12 @@ const Card: FC = () => {
             height={26}
           />
 
-          <CircleProgress rated={80} />
+          <CircleProgress rated={vote} />
         </div>
         <div className="pt-[26px] px-[10px] pb-[12px]">
-          <a className="font-bold cursor-pointer">Fast X</a>
-          <p className="text-black/60">May 17, 2023</p>
-          <p className="text-black/60">Action, Crime, Thriller</p>
+          <a className="font-bold cursor-pointer">{title}</a>
+          <p className="text-black/60">{date}</p>
+          <p className="text-black/60">{genres}</p>
         </div>
       </div>
     </div>

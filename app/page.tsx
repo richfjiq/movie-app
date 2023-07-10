@@ -1,35 +1,20 @@
 'use client';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import arrowIcon from '@/public/assets/arrow.svg';
 import { Card } from '@/components';
-import { Movies, Result } from '@/interfaces';
+import { useMovies } from '@/store';
 
-interface Props {
-  movies: Result[];
-}
-
-const Home: FC<Props> = () => {
-  const [category, setCategory] = useState('popular');
-  const [movies, setMovies] = useState<Result[]>([]);
-  const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
-
-  console.log(API_KEY);
-
-  const getMovies = useCallback(async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&page=1`
-    );
-    const repo: Movies = await res.json();
-    setMovies(repo.results);
-  }, [category, API_KEY]);
+const Home: FC = () => {
+  const { loading, popular, fetchMovies } = useMovies();
+  const [page, setPage] = useState(1);
+  console.log({ popular });
 
   useEffect(() => {
-    getMovies();
-  }, [getMovies]);
+    fetchMovies({ category: 'popular', page });
+  }, [page, fetchMovies]);
 
-  console.log({ movies });
   return (
     <section className="max-w-[1400px] w-full pt-[94px] px-[20px] min-[600px]:px-[40px]">
       <h2 className="font-semibold text-[26px] mb-5">Popular Movies</h2>
@@ -59,10 +44,28 @@ const Home: FC<Props> = () => {
             Search
           </button>
         </div>
-        <div className="grid min-[400px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-2 min-[1050px]:grid-cols-3 min-[1250px]:grid-cols-4 min-[1350px]:grid-cols-5 gap-x-[30px] w-full min-[900px]:pl-[30px]">
-          {movies?.map((movie) => (
-            <Card key={movie.id} />
-          ))}
+        <div className="min-[900px]:pl-[30px]">
+          <div className="grid min-[400px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-2 min-[1050px]:grid-cols-3 min-[1250px]:grid-cols-4 min-[1350px]:grid-cols-5 gap-x-[30px] w-full">
+            {popular?.map((movie) => {
+              if (!movie.poster_path) return;
+              return (
+                <Card
+                  url={movie.poster_path}
+                  key={movie.id}
+                  title={movie.original_title}
+                  date={movie.release_date}
+                  vote={movie.vote_average * 10}
+                  // genres={}
+                />
+              );
+            })}
+          </div>
+          <button
+            onClick={() => setPage((prev) => prev + 1)}
+            className="w-full h-[50px] bg-cyan rounded-lg text-2xl font-bold text-white mb-[30px]"
+          >
+            Load More
+          </button>
         </div>
       </div>
     </section>

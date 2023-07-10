@@ -16,8 +16,6 @@ const Nav: FC = () => {
     setNav((prev) => !prev);
   };
 
-  console.log({ nav });
-
   return (
     <nav className="flex w-full bg-oxford-blue absolute h-[64px] justify-center">
       <div className="flex max-w-[1400px] w-full pl-5 pr-5 min-[600px]:pl-10 min-[600px]:pr-10 justify-between">

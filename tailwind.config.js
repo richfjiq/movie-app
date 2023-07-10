@@ -16,6 +16,7 @@ module.exports = {
       'ufo-green': '#1ED07A',
       'dogwood-rose': '#DA2360',
       pear: '#D3D530',
+      cyan: '#01B4E4',
     },
     extend: {
       fontFamily: {
