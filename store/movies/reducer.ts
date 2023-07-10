@@ -7,7 +7,7 @@ export interface MoviesState {
   error: string | null;
   popular: Result[];
   upcoming: Result[];
-  topRated: Result[];
+  top_rated: Result[];
 }
 
 const initialState: MoviesState = {
@@ -15,7 +15,7 @@ const initialState: MoviesState = {
   error: null,
   popular: [],
   upcoming: [],
-  topRated: [],
+  top_rated: [],
 };
 
 const moviesStore = createSlice({

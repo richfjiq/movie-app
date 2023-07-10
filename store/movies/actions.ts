@@ -5,7 +5,7 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
 
 const FETCH_MOVIES = 'movies/FETCH_MOVIES';
 
-export type Category = 'popular' | 'upcoming' | 'topRated';
+export type Category = 'popular' | 'upcoming' | 'top_rated';
 
 export const fetchMovies = createAsyncThunk(
   FETCH_MOVIES,

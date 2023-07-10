@@ -1,13 +1,15 @@
-import { FC } from 'react';
+'use client';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import arrowIcon from '@/public/assets/arrow.svg';
-import { PopularMoviesServer } from '@/components';
+import { Card, UpcomingMoviesServer } from '@/components';
+import { useMovies } from '@/store';
 
-const Home: FC = async () => {
+const Upcoming: FC = () => {
   return (
     <section className="max-w-[1400px] w-full pt-[94px] px-[20px] min-[600px]:px-[40px]">
-      <h2 className="font-semibold text-[26px] mb-5">Popular Movies</h2>
+      <h2 className="font-semibold text-[26px] mb-5">Upcoming Movies</h2>
       <div className="min-[900px]:flex">
         <div>
           <div className="flex w-full min-[900px]:w-[258px] cursor-pointer justify-between items-center px-[16px] py-[14px] border border-platinum rounded-lg shadow-lg mb-[12px]">
@@ -37,7 +39,7 @@ const Home: FC = async () => {
 
         <div className="min-[900px]:pl-[30px]">
           <div className="grid min-[400px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-2 min-[1050px]:grid-cols-3 min-[1250px]:grid-cols-4 min-[1350px]:grid-cols-5 gap-x-[30px] w-full">
-            {/* {res?.map((movie) => {
+            {/* {upcoming?.map((movie) => {
               if (!movie.poster_path) return;
               return (
                 <Card
@@ -49,11 +51,11 @@ const Home: FC = async () => {
                 />
               );
             })} */}
-            <PopularMoviesServer />
+            <UpcomingMoviesServer />
           </div>
-          {/* {res.length > 0 && (
+          {/* {upcoming.length > 0 && (
             <button
-              // onClick={() => setPage((prev) => prev + 1)}
+              onClick={() => setPage((prev) => prev + 1)}
               className="w-full h-[50px] bg-cyan rounded-lg text-2xl font-bold text-white mb-[30px]"
             >
               Load More
@@ -65,4 +67,4 @@ const Home: FC = async () => {
   );
 };
 
-export default Home;
+export default Upcoming;

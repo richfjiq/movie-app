@@ -1,6 +1,7 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import logoIcon from '@/public/assets/logo.svg';
 import plusIcon from '@/public/assets/plus.svg';
@@ -10,13 +11,18 @@ import menuIcon from '@/public/assets/menuIcon.svg';
 import logoMobile from '@/public/assets/logoMobile.svg';
 
 const Nav: FC = () => {
+  const navRef = useRef(null);
   const [nav, setNav] = useState(false);
-  const [position, setPosition] = useState(window.scrollY);
+  const [position, setPosition] = useState(0);
   const [visible, setVisible] = useState(true);
 
   const toggleNavbar = () => {
     setNav((prev) => !prev);
   };
+
+  useEffect(() => {
+    setPosition(window.scrollY);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,10 +37,11 @@ const Nav: FC = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, [position]);
 
   return (
     <nav
+      ref={navRef}
       className={
         visible
           ? 'flex z-10 fixed w-full bg-oxford-blue h-[64px] justify-center translate-y-0 transition-transform ease-in duration-[3000]'
@@ -73,15 +80,21 @@ const Nav: FC = () => {
               </li>
               <div className="absolute w-[170px] top-[45px] hidden group-hover:md:block hover:md:block bg-white pt-2 pb-2 rounded-sm shadow-lg">
                 <ul>
-                  <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
-                    Popular
-                  </li>
-                  <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
-                    Upcoming
-                  </li>
-                  <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
-                    Top Rated
-                  </li>
+                  <Link href="/">
+                    <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
+                      Popular
+                    </li>
+                  </Link>
+                  <Link href="/upcoming">
+                    <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
+                      Upcoming
+                    </li>
+                  </Link>
+                  <Link href="/top_rated">
+                    <li className="cursor-pointer p-2 py-1 px-5 hover:bg-ghost-white">
+                      Top Rated
+                    </li>
+                  </Link>
                 </ul>
               </div>
             </div>

@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import type { Metadata } from 'next';
 
 import { Nav } from '@/components';
-import { MovieProvider, store } from '@/store';
+import { MovieProvider } from '@/store';
 
 export const metadata: Metadata = {
   title: 'Popular Movies — The Movie Database (TMDB)',
