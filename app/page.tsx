@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import arrowIcon from '@/public/assets/arrow.svg';
-import { Card, Loading } from '@/components';
+import { Card } from '@/components';
 import { useMovies } from '@/store';
 
 const Home: FC = () => {
@@ -45,38 +45,30 @@ const Home: FC = () => {
           </button>
         </div>
 
-        {loading ? (
-          <div className="w-full">
-            <div>
-              <Loading />
-            </div>
+        <div className="min-[900px]:pl-[30px]">
+          <div className="grid min-[400px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-2 min-[1050px]:grid-cols-3 min-[1250px]:grid-cols-4 min-[1350px]:grid-cols-5 gap-x-[30px] w-full">
+            {popular?.map((movie) => {
+              if (!movie.poster_path) return;
+              return (
+                <Card
+                  url={movie.poster_path}
+                  key={movie.id}
+                  title={movie.original_title}
+                  date={movie.release_date}
+                  vote={movie.vote_average * 10}
+                />
+              );
+            })}
           </div>
-        ) : (
-          <div className="min-[900px]:pl-[30px]">
-            <div className="grid min-[400px]:grid-cols-2 min-[750px]:grid-cols-3 min-[900px]:grid-cols-2 min-[1050px]:grid-cols-3 min-[1250px]:grid-cols-4 min-[1350px]:grid-cols-5 gap-x-[30px] w-full">
-              {popular?.map((movie) => {
-                if (!movie.poster_path) return;
-                return (
-                  <Card
-                    url={movie.poster_path}
-                    key={movie.id}
-                    title={movie.original_title}
-                    date={movie.release_date}
-                    vote={movie.vote_average * 10}
-                  />
-                );
-              })}
-            </div>
-            {popular.length > 0 && (
-              <button
-                onClick={() => setPage((prev) => prev + 1)}
-                className="w-full h-[50px] bg-cyan rounded-lg text-2xl font-bold text-white mb-[30px]"
-              >
-                Load More
-              </button>
-            )}
-          </div>
-        )}
+          {popular.length > 0 && (
+            <button
+              onClick={() => setPage((prev) => prev + 1)}
+              className="w-full h-[50px] bg-cyan rounded-lg text-2xl font-bold text-white mb-[30px]"
+            >
+              Load More
+            </button>
+          )}
+        </div>
       </div>
     </section>
   );

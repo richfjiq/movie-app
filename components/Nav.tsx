@@ -1,5 +1,5 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import logoIcon from '@/public/assets/logo.svg';
@@ -11,13 +11,36 @@ import logoMobile from '@/public/assets/logoMobile.svg';
 
 const Nav: FC = () => {
   const [nav, setNav] = useState(false);
+  const [position, setPosition] = useState(window.scrollY);
+  const [visible, setVisible] = useState(true);
 
   const toggleNavbar = () => {
     setNav((prev) => !prev);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      let moving = window.scrollY;
+
+      setVisible(position > moving);
+      setPosition(moving);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
-    <nav className="flex w-full bg-oxford-blue absolute h-[64px] justify-center">
+    <nav
+      className={
+        visible
+          ? 'flex z-10 fixed w-full bg-oxford-blue h-[64px] justify-center translate-y-0 transition-transform ease-in duration-[3000]'
+          : 'flex z-10 fixed w-full bg-oxford-blue h-[64px] justify-center translate-y-[-100%] transition-transform ease-in duration-[3000]'
+      }
+    >
       <div className="flex max-w-[1400px] w-full pl-5 pr-5 min-[600px]:pl-10 min-[600px]:pr-10 justify-between">
         <ul className="w-[33%] flex items-center min-[901px]:hidden">
           <li className="cursor-pointer" onClick={toggleNavbar}>
