@@ -2,7 +2,11 @@ import { shallowEqual } from 'react-redux';
 
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { RootState } from '../store';
-import { Category, fetchMovies as fetchMoviesAction } from './actions';
+import {
+  Category,
+  fetchMovies as fetchMoviesAction,
+  nextPage as nextPageAction,
+} from './actions';
 import { useCallback } from 'react';
 
 export const useMovies = () => {
@@ -12,9 +16,15 @@ export const useMovies = () => {
   );
   const dispatch = useAppDispatch();
 
+  const nextPageFn = useCallback(
+    ({ category, page }: { category: Category; page: number }) => {
+      dispatch(nextPageAction({ category, page }));
+    },
+    [dispatch]
+  );
   const fetchMovies = useCallback(
-    async ({ category, page }: { category: Category; page: number }) => {
-      await dispatch(fetchMoviesAction({ category, page }));
+    ({ category, page }: { category: Category; page: number }) => {
+      dispatch(fetchMoviesAction({ category, page }));
     },
     [dispatch]
   );
@@ -22,5 +32,6 @@ export const useMovies = () => {
   return {
     ...moviesState,
     fetchMovies,
+    nextPageFn,
   };
 };

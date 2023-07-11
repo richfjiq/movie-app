@@ -1,11 +1,24 @@
 import { Movies } from '@/interfaces';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
 
 const FETCH_MOVIES = 'movies/FETCH_MOVIES';
+const NEXT_PAGE = 'movies/NEXT_PAGE';
 
 export type Category = 'popular' | 'upcoming' | 'top_rated';
+
+export const nextPage = createAction(
+  NEXT_PAGE,
+  ({ category, page }: { category: Category; page: number }) => {
+    return {
+      payload: {
+        category,
+        page,
+      },
+    };
+  }
+);
 
 export const fetchMovies = createAsyncThunk(
   FETCH_MOVIES,

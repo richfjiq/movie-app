@@ -21,7 +21,9 @@ const Nav: FC = () => {
   };
 
   useEffect(() => {
-    setPosition(window.scrollY);
+    if (window.scrollY) {
+      setPosition(window.scrollY);
+    }
   }, []);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const Nav: FC = () => {
       setPosition(moving);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -41,7 +43,7 @@ const Nav: FC = () => {
 
   return (
     <nav
-      ref={navRef}
+      // ref={navRef}
       className={
         visible
           ? 'flex z-10 fixed w-full bg-oxford-blue h-[64px] justify-center translate-y-0 transition-transform ease-in duration-[3000]'

@@ -38,7 +38,7 @@ const Card: FC<Props> = ({ url, title, date, genres, vote }) => {
         <div className="pt-[26px] px-[10px] pb-[12px]">
           <a className="font-bold cursor-pointer">{title}</a>
           <p className="text-black/60">{date}</p>
-          <p className="text-black/60">{genres}</p>
+          <p className="text-black/60 text-xs">{genres}</p>
         </div>
       </div>
     </div>
