@@ -9,3 +9,5 @@ export { default as PopularMoviesClient } from './PopularMoviesClient';
 export { default as UpcomingMoviesClient } from './UpcomingMoviesClient';
 export { default as TopRatedMoviesClient } from './TopRatedMoviesClient';
 export { default as LoadMoreButton } from './LoadMoreButton';
+export { default as MovieCard } from './MovieCard';
+export { default as Cast } from './Cast';

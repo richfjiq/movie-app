@@ -2,9 +2,10 @@ import { FC } from 'react';
 
 interface Props {
   rated?: number;
+  details?: boolean;
 }
 
-const CircleProgress: FC<Props> = ({ rated = 0 }) => {
+const CircleProgress: FC<Props> = ({ rated = 0, details = false }) => {
   let bgOpacity = 'rgba(218, 35, 96, .5)';
   let bg = '#DA2360';
 
@@ -14,6 +15,27 @@ const CircleProgress: FC<Props> = ({ rated = 0 }) => {
   } else if (rated >= 70) {
     bgOpacity = 'rgba(30, 208, 122, 0.4)';
     bg = '#1ED07A';
+  }
+
+  if (details) {
+    return (
+      <div className="flex justify-center items-center bottom-[-17px] left-[10px] bg-dark-jungle-green w-[60px] h-[60px] rounded-full">
+        <div
+          className="progress_bar_details"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          style={{
+            background: `radial-gradient(closest-side, #081C22 85%, transparent 80% 100%), conic-gradient(${bg} ${rated}%, ${bgOpacity} 0)`,
+          }}
+        >
+          <div className="relative">
+            <p className="ml-[-3px]">{rated}</p>
+            <p className="absolute text-[10px] top-0 left-[17px]">%</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

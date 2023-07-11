@@ -16,30 +16,22 @@
   border-radius: 50%;
 }
 
-div.header.large.first {
-  border-bottom: 1px solid var(--primaryColor);
+.progress_bar_details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+.bg_image {
   background-position: left calc((50vw - 170px) - 340px) top;
   background-position-x: left calc((50vw - 170px) - 340px);
   background-position-y: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(/t/p/w1920_and_h800_multi_faces/lQzSMhkAl90iXPirjnLbRHkxApC.jpg);
-}
-
-div.header.large.first {
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  border-bottom: 1px solid rgba(var(--lightGrey), 1);
-}
-div.header {
-  background: linear-gradient(
-    to bottom right,
-    rgba(94.5, 73.5, 73.5, 1),
-    rgba(94.5, 73.5, 73.5, 0.84)
-  );
-}
-div.header {
-  width: 100%;
-  background: linear-gradient(to bottom right, #e3e3e3, #fff);
 }

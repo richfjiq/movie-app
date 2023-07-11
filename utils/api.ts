@@ -1,4 +1,4 @@
-import { Cast, Details, Genres, Movies } from '@/interfaces';
+import { Cast, Details, Genres, Images, Movies } from '@/interfaces';
 
 export const fetchData = async (category: string, key: string) => {
   const movies = await fetch(

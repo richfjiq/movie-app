@@ -174,15 +174,21 @@ const Nav: FC = () => {
               Movies
             </li>
             <ul className="pl-8">
-              <li className="flex text-white font-normal mb-4 cursor-pointer">
-                Popular
-              </li>
-              <li className="flex text-white font-normal mb-4 cursor-pointer">
-                Upcoming
-              </li>
-              <li className="flex text-white font-normal mb-4 cursor-pointer">
-                Top Rated
-              </li>
+              <Link href={'/'}>
+                <li className="flex text-white font-normal mb-4 cursor-pointer">
+                  Popular
+                </li>
+              </Link>
+              <Link href={'/upcoming'}>
+                <li className="flex text-white font-normal mb-4 cursor-pointer">
+                  Upcoming
+                </li>
+              </Link>
+              <Link href={'/top_rated'}>
+                <li className="flex text-white font-normal mb-4 cursor-pointer">
+                  Top Rated
+                </li>
+              </Link>
             </ul>
             <li className="flex text-xl text-white font-semibold mb-4 cursor-pointer">
               TV Shows
