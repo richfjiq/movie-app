@@ -24,6 +24,8 @@ const UpcomingMoviesClient: FC = () => {
             title={movie.original_title}
             date={movie.release_date}
             vote={movie.vote_average * 10}
+            movieId={movie.id}
+            genres={movie.genre_strings}
           />
         );
       })}

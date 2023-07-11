@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,9 +9,10 @@ import searchIcon from '@/public/assets/search.svg';
 import userIcon from '@/public/assets/userIcon.svg';
 import menuIcon from '@/public/assets/menuIcon.svg';
 import logoMobile from '@/public/assets/logoMobile.svg';
+import { useMovies } from '@/store';
 
 const Nav: FC = () => {
-  const navRef = useRef(null);
+  const { fetchGenres } = useMovies();
   const [nav, setNav] = useState(false);
   const [position, setPosition] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -19,6 +20,11 @@ const Nav: FC = () => {
   const toggleNavbar = () => {
     setNav((prev) => !prev);
   };
+
+  useEffect(() => {
+    fetchGenres();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (window.scrollY) {
@@ -43,7 +49,6 @@ const Nav: FC = () => {
 
   return (
     <nav
-      // ref={navRef}
       className={
         visible
           ? 'flex z-10 fixed w-full bg-oxford-blue h-[64px] justify-center translate-y-0 transition-transform ease-in duration-[3000]'

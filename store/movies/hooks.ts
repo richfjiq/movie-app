@@ -6,6 +6,7 @@ import {
   Category,
   fetchMovies as fetchMoviesAction,
   nextPage as nextPageAction,
+  fetchGenres as fetchGenresAction,
 } from './actions';
 import { useCallback } from 'react';
 
@@ -29,9 +30,14 @@ export const useMovies = () => {
     [dispatch]
   );
 
+  const fetchGenres = useCallback(() => {
+    dispatch(fetchGenresAction());
+  }, [dispatch]);
+
   return {
     ...moviesState,
     fetchMovies,
     nextPageFn,
+    fetchGenres,
   };
 };

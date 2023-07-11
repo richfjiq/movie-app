@@ -11,6 +11,7 @@ export interface Result {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
+  genre_strings?: string;
   id: number;
   original_language: OriginalLanguage;
   original_title: string;

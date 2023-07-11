@@ -11,7 +11,6 @@ const LoadMoreButton: FC<ButtonProps> = ({ category }) => {
     useMovies();
 
   const handleButtonClick = () => {
-    console.log('clicked');
     let currentPage = 1;
 
     switch (category) {

@@ -1,6 +1,6 @@
-import { Result } from '@/interfaces';
+import { Genre, Result } from '@/interfaces';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchMovies, nextPage } from './actions';
+import { fetchGenres, fetchMovies, nextPage } from './actions';
 
 export interface MoviesState {
   loading: boolean;
@@ -12,6 +12,7 @@ export interface MoviesState {
   upcoming_page: number;
   top_rated_page: number;
   next_page: boolean;
+  genres: Genre[];
 }
 
 const initialState: MoviesState = {
@@ -24,6 +25,7 @@ const initialState: MoviesState = {
   upcoming_page: 1,
   top_rated_page: 1,
   next_page: false,
+  genres: [],
 };
 
 const moviesStore = createSlice({
@@ -34,6 +36,17 @@ const moviesStore = createSlice({
     builder.addCase(nextPage, (state, { payload }) => {
       state[`${payload.category}_page`] = payload.page;
       state.next_page = true;
+    });
+    builder.addCase(fetchGenres.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchGenres.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.genres = payload ? payload : [];
+    });
+    builder.addCase(fetchGenres.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload as string;
     });
     builder.addCase(fetchMovies.pending, (state) => {
       state.loading = true;

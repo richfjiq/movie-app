@@ -24,6 +24,8 @@ const PopularMoviesClient: FC = () => {
             title={movie.original_title}
             date={movie.release_date}
             vote={movie.vote_average * 10}
+            genres={movie.genre_strings}
+            movieId={movie.id}
           />
         );
       })}

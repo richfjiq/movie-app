@@ -1,4 +1,4 @@
-import { Genres, Movies } from '@/interfaces';
+import { Cast, Details, Genres, Movies } from '@/interfaces';
 
 export const fetchData = async (category: string, key: string) => {
   const movies = await fetch(
@@ -31,4 +31,22 @@ export const fetchData = async (category: string, key: string) => {
   });
 
   return moviesData;
+};
+
+export const fetchMovieDetails = async (movieId: string, key: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`
+  );
+  const movieDetails: Details = await res.json();
+
+  return movieDetails;
+};
+
+export const fetchCast = async (movieId: string, key: string) => {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${key}`
+  );
+  const movieCast: Cast = await res.json();
+
+  return movieCast.cast;
 };

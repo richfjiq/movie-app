@@ -5,17 +5,17 @@ import Card from './Card';
 import { useMovies } from '@/store';
 
 const TopRatedMoviesClient: FC = () => {
-  const { upcoming, upcoming_page, fetchMovies, next_page } = useMovies();
+  const { top_rated, top_rated_page, fetchMovies, next_page } = useMovies();
 
   useEffect(() => {
     if (next_page) {
-      fetchMovies({ category: 'upcoming', page: upcoming_page });
+      fetchMovies({ category: 'top_rated', page: top_rated_page });
     }
-  }, [fetchMovies, next_page, upcoming_page]);
+  }, [fetchMovies, next_page, top_rated_page]);
 
   return (
     <>
-      {upcoming?.map((movie) => {
+      {top_rated?.map((movie) => {
         if (!movie.poster_path) return;
         return (
           <Card
@@ -24,6 +24,8 @@ const TopRatedMoviesClient: FC = () => {
             title={movie.original_title}
             date={movie.release_date}
             vote={movie.vote_average * 10}
+            movieId={movie.id}
+            genres={movie.genre_strings}
           />
         );
       })}
