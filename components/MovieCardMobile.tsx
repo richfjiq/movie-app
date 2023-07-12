@@ -37,7 +37,7 @@ const MovieCardMobile: FC<MovieCardMobileProps> = ({ details, cast }) => {
   });
 
   return (
-    <div className="w-full pt-[110px]">
+    <div className="w-full">
       <div
         className="bg_image_mobile"
         style={{
