@@ -35,3 +35,19 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.bg_image_mobile {
+  background-position: calc((((100vw / 2.222222) - 20px) / 1.5) / 2) 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.image_height_movie {
+  height: calc(100vw / 2);
+}
+
+@media only screen and (max-width: 500px) {
+  .image_height_movie {
+    height: calc(100vw / 2);
+  }
+}

@@ -1,26 +1,25 @@
-/* eslint-disable jsx-a11y/alt-text */
 'use client';
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react';
 import Image from 'next/image';
+import { usePalette } from '@lauriys/react-palette';
 
 import { CastElement, Details } from '@/interfaces';
-import { usePalette } from '@lauriys/react-palette';
-import CircleProgress from './CircleProgress';
 import { getDuration } from '@/utils';
-import list from '@/public/assets/list.svg';
-import heart from '@/public/assets/heart.svg';
-import star from '@/public/assets/star.svg';
 import bookmark from '@/public/assets/bookmark.svg';
-import play from '@/public/assets/play.svg';
 import Cast from './Cast';
+import CircleProgress from './CircleProgress';
+import heart from '@/public/assets/heart.svg';
+import list from '@/public/assets/list.svg';
+import play from '@/public/assets/play.svg';
+import star from '@/public/assets/star.svg';
 
-interface MovieCardProps {
+interface MovieCardMobileProps {
   details: Details;
   cast: CastElement[];
 }
 
-const MovieCard: FC<MovieCardProps> = ({ details, cast }) => {
+const MovieCardMobile: FC<MovieCardMobileProps> = ({ details, cast }) => {
   const { data, loading, error } = usePalette(
     `https://image.tmdb.org/t/p/w500${details.poster_path}`
   );
@@ -38,37 +37,79 @@ const MovieCard: FC<MovieCardProps> = ({ details, cast }) => {
   });
 
   return (
-    <div className="w-full h-[100vh] pt-[110px]">
+    <div className="w-full pt-[110px]">
       <div
-        className="bg_image"
+        className="bg_image_mobile"
         style={{
-          backgroundImage: `url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${details.backdrop_path})`,
+          backgroundImage: `url(https://www.themoviedb.org/t/p/w1000_and_h450_multi_faces${details.backdrop_path})`,
         }}
       >
         <div
           style={{
-            backgroundImage: `linear-gradient(
-            to right,
-            ${bg} calc((50vw - 170px) - 340px),
-            ${bgOpacity} 50%,
-            ${bgOpacity} 100%)`,
+            backgroundImage: `linear-gradient(to right, ${bg} 20%, rgba(241.5, 220.5, 199.5, 0) 50%)`,
           }}
         >
-          <div
-            className="flex justify-center"
-            style={{ background: `${data.darkMuted}90` }}
-          >
-            <div className="flex max-w-[1400px] w-full py-[30px] px-[40px] ">
+          <div className="flex justify-center">
+            <div className="flex w-[100vw] h-auto py-[20px] px-[20px] min-[600px]:px-[40px]">
               <div className="mr-[30px]">
-                <div className="w-[300px] rounded-md">
+                <div className="rounded-md">
                   <img
-                    className="w-[300px] h-[510px] rounded-md"
+                    className="rounded-md image_height_movie"
                     src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
                     alt="poster_movie"
                   />
                 </div>
               </div>
-              <div className="flex w-full items-center">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ background: `${bg}` }}>
+        <div className="py-[16px]">
+          <h1 className="text-xl min-[500px]:text-2xl min-[600px]:text-3xl min-[700px]:text-4xl text-white text-center">
+            {details.title} <span className="font-light">({year})</span>
+          </h1>
+        </div>
+        <div className="flex items-center pb-[16px]">
+          <div className="w-[50%] flex justify-center">
+            <CircleProgress
+              details
+              rated={Math.floor(details.vote_average * 10)}
+            />
+            <div className="flex flex-col justify-center ml-[6px] mr-[20px]">
+              <h3 className="font-bold text-white">User</h3>
+              <h3 className="font-bold text-white">Score</h3>
+            </div>
+          </div>
+          <div className="w-[50%] flex justify-center">
+            <div className="flex">
+              <Image src={play} width={23} height={23} alt="list icon" />
+              <h3 className="font-normal text-white ml-[5px]">Play Trailer</h3>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center py-[10px] bg-white/10">
+          <div className="flex">
+            <p className="text-white font-light mr-2">{details.release_date}</p>
+            <p className="text-white font-light mr-2">
+              {getDuration(details.runtime)}
+            </p>
+          </div>
+          <div>
+            <p className="text-white font-light mr-2">{genreString}</p>
+          </div>
+        </div>
+        <div className="py-[20px] px-[20px] min-[600px]:px-[40px]">
+          <p className="text-lg text-white font-light italic">
+            {details.tagline}
+          </p>
+          <h3 className="text-xl text-white font-semibold mt-[10px] mb-[8px]">
+            Overview
+          </h3>
+          <p className="text-white font-light">{details.overview}</p>
+        </div>
+      </div>
+      {/* <div className="flex w-full items-center">
                 <div className="flex flex-col">
                   <h1 className="text-4xl text-white font-semibold">
                     {details.title}{' '}
@@ -144,14 +185,10 @@ const MovieCard: FC<MovieCardProps> = ({ details, cast }) => {
                   </h3>
                   <p className="text-white font-light">{details.overview}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </div> */}
       <Cast details={details} cast={cast} />
     </div>
   );
 };
 
-export default MovieCard;
+export default MovieCardMobile;
