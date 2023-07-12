@@ -8,6 +8,7 @@ export { default as MovieCardMobile } from './MovieCardMobile';
 export { default as Nav } from './Nav';
 export { default as PopularMoviesClient } from './PopularMoviesClient';
 export { default as PopularMoviesServer } from './PopularMoviesServer';
+export { default as SearchComponent } from './SearchComponent';
 export { default as TopRatedMoviesClient } from './TopRatedMoviesClient';
 export { default as TopRatedMoviesServer } from './TopRatedMoviesServer';
 export { default as UpcomingMoviesClient } from './UpcomingMoviesClient';

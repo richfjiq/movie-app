@@ -38,7 +38,7 @@ const MovieCard: FC<MovieCardProps> = ({ details, cast }) => {
   });
 
   return (
-    <div className="w-full h-[100vh] pt-[110px]">
+    <div className="w-full h-[100vh]">
       <div
         className="bg_image"
         style={{

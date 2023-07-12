@@ -1,10 +1,8 @@
-'use client';
 import { FC } from 'react';
-import Image from 'next/image';
 
-import arrowIcon from '@/public/assets/arrow.svg';
 import {
   LoadMoreButton,
+  SearchComponent,
   TopRatedMoviesClient,
   TopRatedMoviesServer,
 } from '@/components';
@@ -14,30 +12,8 @@ const TopRated: FC = () => {
     <section className="max-w-[1400px] w-full pt-[94px] px-[20px] min-[600px]:px-[40px]">
       <h2 className="font-semibold text-[26px] mb-5">Top Rated Movies</h2>
       <div className="min-[900px]:flex">
-        <div>
-          <div className="flex w-full min-[900px]:w-[258px] cursor-pointer justify-between items-center px-[16px] py-[14px] border border-platinum rounded-lg shadow-lg mb-[12px]">
-            <h2 className="text-lg font-semibold">Sort</h2>
-            <Image src={arrowIcon} alt="Arrow icon" height={20} width={20} />
-          </div>
-
-          <div className="flex w-full min-[900px]:w-[258px] cursor-pointer justify-between items-center px-[16px] py-[14px] border border-platinum rounded-lg shadow-lg mb-[12px]">
-            <h2 className="text-lg font-semibold">Where to watch</h2>
-            <div className="flex">
-              <p className="text-sm font-light mr-[10px] px-[10px] rounded-lg bg-platinum/70">
-                52
-              </p>
-              <Image src={arrowIcon} alt="Arrow icon" height={20} width={20} />
-            </div>
-          </div>
-
-          <div className="flex w-full min-[900px]:w-[258px] cursor-pointer justify-between items-center px-[16px] py-[14px] border border-platinum rounded-lg shadow-lg mb-[12px]">
-            <h2 className="text-lg font-semibold">Filters</h2>
-            <Image src={arrowIcon} alt="Arrow icon" height={20} width={20} />
-          </div>
-
-          <button className="w-full mb-[20px] min-[900px]:mb-0 h-[44px] bg-platinum/70 rounded-[20px] text-xl font-semibold text-black/50 mt-[10px]">
-            Search
-          </button>
+        <div className="w-full min-[900px]:w-[258px]">
+          <SearchComponent />
         </div>
 
         <div className="min-[900px]:pl-[30px]">
